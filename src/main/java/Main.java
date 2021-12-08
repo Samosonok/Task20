@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static List<String> result = new ArrayList<>();
+    static List<Book> result = new ArrayList<>();
     static String firstNameForSearch;
     static String lastNameForSearch;
     static boolean condition1 = true;
@@ -24,17 +24,23 @@ public class Main {
 
             while (condition2) {
                 getNamesForSearch();
-                System.out.println(bookService.getBooksByAuthor
-                        (result, firstNameForSearch, lastNameForSearch));
+                bookService.getBooksByAuthor(result, firstNameForSearch, lastNameForSearch);
                 condition2 = false;
                 condition1 = false;
             }
+        }
+
+        System.out.println("BOOKS BY THIS AUTHOR");
+        int c = 1;
+        for (Book d : result) {
+            System.out.println(c + ". " + d.title);
+            c++;
         }
     }
 
     private static String getBookName() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Write book's name and then ENTER");
+        System.out.println("Write book title and then ENTER");
         return sc.nextLine();
     }
 
